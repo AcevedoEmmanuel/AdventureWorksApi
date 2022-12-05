@@ -31,7 +31,7 @@ namespace TodoApi.Controllers
 
             using(_context)
             {
-                var query = from p in _context.People 
+                var cadena = from p in _context.People 
                             join e in _context.Employees on p.BusinessEntityID equals e.BusinessEntityID
                             select new dtoEmployee
                             {
@@ -64,14 +64,14 @@ namespace TodoApi.Controllers
                                     ModifiedDatePerson = p.ModifiedDate
                                 }
                             };
-                var employee = await query.ToListAsync();
+                var empleado = await cadena.ToListAsync();
 
-                if (employee == null)
+                if (empleado == null)
                 {
                     return null;
                 }
 
-                return JsonConvert.SerializeObject(employee);
+                return JsonConvert.SerializeObject(empleado);
 
             }
         }
